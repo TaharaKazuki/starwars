@@ -5,6 +5,6 @@
 body {
   @apply bg-primary;
 }
-/* .text-outline {
+.text-outline {
   -webkit-text-stroke: 1px #ffffff;
-} */
+}
