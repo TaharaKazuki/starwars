@@ -21,7 +21,7 @@ export const LightSaber = ({ type, imageUrl }: LightSaberProps) => {
     <div className="relative flex w-[700px] items-center">
       <div
         onClick={toggleExpand}
-        className="absolute left-[-45px] cursor-pointer"
+        className="absolute left-[-20px] cursor-pointer"
       >
         <Image
           src={imageUrl}
