@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -12,10 +12,19 @@ type LightSaberProps = {
 
 export const LightSaber = ({ type, imageUrl }: LightSaberProps) => {
   const [expanded, setExpanded] = useState(false);
+  const initialRender = useRef(true);
 
   const neonType = type === 'jedi' ? 'neon-jedi' : 'neon-sith';
 
-  const toggleExpand = () => setExpanded(!expanded);
+  const toggleExpand = () => {
+    if (!initialRender.current) {
+      setExpanded(!expanded);
+    }
+  };
+
+  useEffect(() => {
+    initialRender.current = false;
+  }, []);
 
   return (
     <div className="relative flex w-[700px] items-center">
@@ -36,9 +45,9 @@ export const LightSaber = ({ type, imageUrl }: LightSaberProps) => {
       <div
         className={cn(
           `p-1 rounded-2xl bg-white ${neonType}`,
-          expanded ? `animate-expand` : `animate-shrink`
+          !initialRender.current &&
+            (expanded ? 'animate-expand' : 'animate-shrink')
         )}
-        style={{ width: expanded ? '100%' : '0%' }}
       />
     </div>
   );
