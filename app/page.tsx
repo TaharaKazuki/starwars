@@ -6,20 +6,25 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 export default function Home() {
-  const [expanded, setExpanded] = useState(false);
+  const [expandedJedi, setExpandedJedi] = useState<boolean>(false);
+  const [expandedSith, setExpandedSith] = useState<boolean>(false);
 
-  const toggleExpand = () => {
-    setExpanded(!expanded);
-  };
+  const toggleExpandJedi = () => setExpandedJedi(!expandedJedi);
+  const toggleExpandSith = () => setExpandedSith(!expandedSith);
 
   return (
     <main className={'flex min-h-screen flex-col gap-16 bg-primary p-24'}>
       <div className="flex flex-col text-white/45">
-        <h1 className="text-3xl font-semibold uppercase">Lightsaber</h1>
+        <h1 className="text-center text-3xl font-semibold uppercase">
+          Lightsaber
+        </h1>
       </div>
       <div className="flex flex-col items-center gap-16">
         <div className="relative flex w-[700px] items-center">
-          <div onClick={toggleExpand} className="absolute left-[-45px]">
+          <div
+            onClick={toggleExpandJedi}
+            className="absolute left-[-45px] cursor-pointer"
+          >
             <Image
               src="/assets/Lightsaber.png"
               alt="Lightsaber"
@@ -33,13 +38,16 @@ export default function Home() {
           <div
             className={cn(
               'p-1 rounded-2xl neon-jedi bg-white',
-              expanded ? 'animate-expand' : 'animate-shrink'
+              expandedJedi ? 'animate-expand' : 'animate-shrink'
             )}
-            style={{ width: expanded ? '100%' : '0%' }}
+            style={{ width: expandedJedi ? '100%' : '0%' }}
           />
         </div>
         <div className="relative flex w-[700px] items-center">
-          <div onClick={toggleExpand} className="absolute left-[-45px]">
+          <div
+            onClick={toggleExpandSith}
+            className="absolute left-[-45px] cursor-pointer"
+          >
             <Image
               src="/assets/Lightsaber.png"
               alt="Lightsaber"
@@ -53,9 +61,9 @@ export default function Home() {
           <div
             className={cn(
               'p-1 rounded-2xl neon-sith bg-white',
-              expanded ? 'animate-expand' : 'animate-shrink'
+              expandedSith ? 'animate-expand' : 'animate-shrink'
             )}
-            style={{ width: expanded ? '100%' : '0%' }}
+            style={{ width: expandedSith ? '100%' : '0%' }}
           />
         </div>
       </div>
