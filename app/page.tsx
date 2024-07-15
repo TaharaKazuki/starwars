@@ -1,71 +1,20 @@
 'use client';
 
-import Image from 'next/image';
-import { useState } from 'react';
-
-import { cn } from '@/lib/utils';
+import { LightSaber } from '@/components/Lightsaber';
 
 export default function Home() {
-  const [expandedJedi, setExpandedJedi] = useState<boolean>(false);
-  const [expandedSith, setExpandedSith] = useState<boolean>(false);
-
-  const toggleExpandJedi = () => setExpandedJedi(!expandedJedi);
-  const toggleExpandSith = () => setExpandedSith(!expandedSith);
-
   return (
-    <main className={'flex min-h-screen flex-col gap-16 bg-primary p-24'}>
+    <main className={'flex min-h-screen flex-col gap-16 p-24'}>
       <div className="flex flex-col text-white/45">
         <h1 className="text-center text-3xl font-semibold uppercase">
           Lightsaber
         </h1>
       </div>
       <div className="flex flex-col items-center gap-16">
-        <div className="relative flex w-[700px] items-center">
-          <div
-            onClick={toggleExpandJedi}
-            className="absolute left-[-45px] cursor-pointer"
-          >
-            <Image
-              src="/assets/Lightsaber.png"
-              alt="Lightsaber"
-              priority
-              quality={100}
-              className="object-contain"
-              width={100}
-              height={40}
-            />
-          </div>
-          <div
-            className={cn(
-              'p-1 rounded-2xl neon-jedi bg-white',
-              expandedJedi ? 'animate-expand' : 'animate-shrink'
-            )}
-            style={{ width: expandedJedi ? '100%' : '0%' }}
-          />
-        </div>
-        <div className="relative flex w-[700px] items-center">
-          <div
-            onClick={toggleExpandSith}
-            className="absolute left-[-45px] cursor-pointer"
-          >
-            <Image
-              src="/assets/Lightsaber.png"
-              alt="Lightsaber"
-              priority
-              quality={100}
-              className="object-contain"
-              width={100}
-              height={40}
-            />
-          </div>
-          <div
-            className={cn(
-              'p-1 rounded-2xl neon-sith bg-white',
-              expandedSith ? 'animate-expand' : 'animate-shrink'
-            )}
-            style={{ width: expandedSith ? '100%' : '0%' }}
-          />
-        </div>
+        <h2 className="text-2xl font-semibold text-neon-jedi">Jedi</h2>
+        <LightSaber type="jedi" imageUrl="/assets/Lightsaber.png" />
+        <h2 className="text-2xl font-semibold text-neon-sith">Sith</h2>
+        <LightSaber type="sith" imageUrl="/assets/Lightsaber.png" />
       </div>
     </main>
   );

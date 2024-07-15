@@ -1,4 +1,10 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-primary;
+}
+/* .text-outline {
+  -webkit-text-stroke: 1px #ffffff;
+} */
