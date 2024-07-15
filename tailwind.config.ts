@@ -28,6 +28,7 @@ const config = {
         },
         sith: {
           DEFAULT: '#F60F0F',
+          hover: '#FF3D3D',
         },
       },
       keyframes: {
@@ -39,10 +40,20 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        expand: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+        shrink: {
+          '0%': { width: '100%' },
+          '100%': { width: '0%' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        expand: 'expand 1s ease-in-out forwards',
+        shrink: 'shrink 1s ease-in-out forwards',
       },
     },
   },
