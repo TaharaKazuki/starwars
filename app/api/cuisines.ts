@@ -6,7 +6,17 @@ export type CuisineFilters = {
   search?: string;
 };
 
-export const fetchCuisines = async (options?: CuisineFilters) => {
+export type Cuisine = {
+  id: number;
+  name: string;
+  category: 'Japanese' | 'Italian' | 'French' | undefined;
+  price: number;
+  image: string;
+};
+
+export const fetchCuisines = async (
+  options?: CuisineFilters
+): Promise<Cuisine[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   let filteredCuisines = CUISINES;

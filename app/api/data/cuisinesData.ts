@@ -1,4 +1,6 @@
-export const CUISINES = [
+import { Cuisine } from '../cuisines';
+
+export const CUISINES: Cuisine[] = [
   {
     id: 1,
     name: 'Food 1',
