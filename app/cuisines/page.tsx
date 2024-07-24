@@ -17,8 +17,6 @@ const CuisinesPage = () => {
     queryFn: () => fetchCuisines({ category, maxPrice, search }),
   });
 
-  console.info(data);
-
   return (
     <div className="flex flex-col gap-2">
       <div>
