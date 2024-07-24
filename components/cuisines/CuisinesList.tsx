@@ -6,7 +6,7 @@ type CuisineListProps = {
   cuisines: Cuisines[];
 };
 
-export default function ProductList({ cuisines }: CuisineListProps) {
+export const CuisineList = ({ cuisines }: CuisineListProps) => {
   return (
     <div className="flex flex-row flex-wrap gap-4">
       {cuisines.map((cuisine) => (
@@ -30,4 +30,4 @@ export default function ProductList({ cuisines }: CuisineListProps) {
       ))}
     </div>
   );
-}
+};

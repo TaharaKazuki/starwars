@@ -1,4 +1,4 @@
-import { cuisines } from './data/cuisinesData';
+import { CUISINES } from './data/cuisinesData';
 
 export type CuisineFilters = {
   category?: 'Japanese' | 'Italian' | 'French';
@@ -9,7 +9,7 @@ export type CuisineFilters = {
 export const fetchCuisines = async (options?: CuisineFilters) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  let filteredCuisines = cuisines;
+  let filteredCuisines = CUISINES;
 
   if (options?.category) {
     filteredCuisines = filteredCuisines.filter((cuisine) => {
