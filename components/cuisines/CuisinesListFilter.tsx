@@ -36,7 +36,7 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
           setCategory(e.target.value as CuisineFilters['category'])
         }
       >
-        <option>-</option>
+        <option>all</option>
         <option value="Japanese">Japanese</option>
         <option value="Italian">Italian</option>
         <option value="French">French</option>
@@ -47,7 +47,7 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
           setMaxPrice(e.target.value ? parseInt(e.target.value) : undefined)
         }
       >
-        <option>-</option>
+        <option>all</option>
         <option value="10">$10</option>
         <option value="50">$50</option>
         <option value="100">$100</option>
