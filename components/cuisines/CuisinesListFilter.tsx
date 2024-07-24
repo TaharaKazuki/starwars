@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useDebounce } from 'use-debounce';
 
 import { type CuisineFilters } from '@/app/api/cuisines';
+import { useDebounce } from '@/hooks/useDebounce';
 
 type CuisinesListFilterProps = {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   onChange: (filters: CuisineFilters) => void;
 };
 
@@ -32,9 +33,9 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
           setCategory(e.target.value as CuisineFilters['category'])
         }
       >
-        <option value="first">First</option>
-        <option value="second">Second</option>
-        <option value="third">Third</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Italian">Italian</option>
+        <option value="French">French</option>
       </select>
       <select
         value={maxPrice}
@@ -42,9 +43,9 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
           setMaxPrice(e.target.value ? parseInt(e.target.value) : undefined)
         }
       >
-        <option value="100">100</option>
-        <option value="500">500</option>
-        <option value="1000">1000</option>
+        <option value="10">$10</option>
+        <option value="50">$50</option>
+        <option value="100">$100</option>
       </select>
     </div>
   );

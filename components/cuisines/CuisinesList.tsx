@@ -24,6 +24,8 @@ export const CuisineList = ({ cuisines }: CuisineListProps) => {
           <Image
             src={cuisine.image}
             alt={cuisine.name}
+            width={150}
+            height={150}
             className="rounded-md"
           />
         </div>
