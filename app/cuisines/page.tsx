@@ -31,7 +31,7 @@ const CuisinesPage = () => {
       />
       <div>
         {data && <CuisineList cuisines={data} />}
-        {isFetching && <p>Loading...</p>}
+        {!data && isFetching && <p>Loading...</p>}
       </div>
     </div>
   );
