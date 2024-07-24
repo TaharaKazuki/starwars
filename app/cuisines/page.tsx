@@ -17,6 +17,8 @@ const CuisinesPage = () => {
     queryFn: () => fetchCuisines({ category, maxPrice, search }),
   });
 
+  console.info(data);
+
   return (
     <div className="flex flex-col gap-2">
       <div>
@@ -30,8 +32,11 @@ const CuisinesPage = () => {
         }}
       />
       <div>
-        {data && <CuisineList cuisines={data} />}
-        {!data && isFetching && <p>Loading...</p>}
+        {data && data.length > 0 && <CuisineList cuisines={data} />}
+        {!data && isFetching && <p className="text-3xl">Loading...</p>}
+        {(!data || data.length === 0) && !isFetching && (
+          <p className="text-3xl">Nothing</p>
+        )}
       </div>
     </div>
   );
