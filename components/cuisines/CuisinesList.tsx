@@ -12,7 +12,7 @@ export const CuisineList = ({ cuisines }: CuisineListProps) => {
       {cuisines.map((cuisine) => (
         <div
           key={cuisine.id}
-          className="flex w-[250px] flex-col gap-4 rounded-md bg-gray-700 p-4"
+          className="flex w-[250px] flex-col gap-4 rounded-md bg-slate-500 p-4"
         >
           <div className="flex flex-row justify-between">
             <div>
