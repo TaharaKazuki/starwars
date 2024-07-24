@@ -10,16 +10,22 @@ type CuisinesListFilterProps = {
 
 export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
   const [search, setSearch] = useState<CuisineFilters['search']>();
-  const [category, setCategory] = useState<CuisineFilters['category']>();
-  const [maxPrice, setMaxPrice] = useState<CuisineFilters['maxPrice']>();
+  const [category, setCategory] = useState<CuisineFilters['category'] | 'all'>(
+    'all'
+  );
+  const [maxPrice, setMaxPrice] = useState<CuisineFilters['maxPrice'] | 'all'>(
+    'all'
+  );
   const [debouncedSearch] = useDebounce(search, 500);
 
   useEffect(() => {
-    onChange({
-      category,
-      maxPrice,
+    const filters: CuisineFilters = {
+      category: category === 'all' ? undefined : category,
+      maxPrice: maxPrice === 'all' ? undefined : maxPrice,
       search: debouncedSearch,
-    });
+    };
+
+    onChange(filters);
   }, [category, debouncedSearch, maxPrice, onChange]);
 
   return (
@@ -31,23 +37,25 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
         placeholder="Search products"
       />
       <select
-        value={category || ''}
+        value={category}
         onChange={(e) =>
-          setCategory(e.target.value as CuisineFilters['category'])
+          setCategory(e.target.value as CuisineFilters['category'] | 'all')
         }
       >
-        <option>all</option>
+        <option value="all">all</option>
         <option value="Japanese">Japanese</option>
         <option value="Italian">Italian</option>
         <option value="French">French</option>
       </select>
       <select
-        value={maxPrice?.toString() || ''}
+        value={maxPrice}
         onChange={(e) =>
-          setMaxPrice(e.target.value ? parseInt(e.target.value) : undefined)
+          setMaxPrice(
+            e.target.value !== 'all' ? parseInt(e.target.value) : 'all'
+          )
         }
       >
-        <option>all</option>
+        <option value="all">all</option>
         <option value="10">$10</option>
         <option value="50">$50</option>
         <option value="100">$100</option>
