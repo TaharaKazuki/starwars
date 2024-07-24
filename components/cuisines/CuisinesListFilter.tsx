@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
 import { type CuisineFilters } from '@/app/api/cuisines';
 
-const CuisinesListFilter = () => {
+type CuisinesListFilterProps = {
+  onChange: (filters: CuisineFilters) => void;
+};
+
+export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
   const [search, setSearch] = useState<CuisineFilters['search']>();
   const [category, setCategory] = useState<CuisineFilters['category']>();
   const [maxPrice, setMaxPrice] = useState<CuisineFilters['maxPrice']>();
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    onChange({ category, maxPrice, search: debouncedSearch });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category, debouncedSearch, maxPrice]);
 
   return (
     <div className="flex flex-row gap-2">
@@ -38,5 +49,3 @@ const CuisinesListFilter = () => {
     </div>
   );
 };
-
-export default CuisinesListFilter;

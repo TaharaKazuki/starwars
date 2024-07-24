@@ -1,9 +1,15 @@
+import { DebouncedState } from 'use-debounce';
+
 import { CUISINES } from './data/cuisinesData';
 
 export type CuisineFilters = {
   category?: 'Japanese' | 'Italian' | 'French';
   maxPrice?: number;
-  search?: string;
+  search?: [
+    string | undefined,
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    DebouncedState<(value: string | undefined) => void>
+  ];
 };
 
 export const fetchCuisines = async (options?: CuisineFilters) => {
