@@ -1,7 +1,7 @@
 import { CUISINES } from './data/cuisinesData';
 
 export type CuisineFilters = {
-  category?: 'Japanese' | 'Italian' | 'French' | 'All';
+  category?: 'Japanese' | 'Italian' | 'French';
   maxPrice?: number;
   search?: string;
 };
@@ -9,7 +9,7 @@ export type CuisineFilters = {
 export type Cuisine = {
   id: number;
   name: string;
-  category?: 'Japanese' | 'Italian' | 'French' | 'All';
+  category?: 'Japanese' | 'Italian' | 'French';
   price: number;
   image: string;
 };
@@ -21,7 +21,7 @@ export const fetchCuisines = async (
 
   let filteredCuisines = CUISINES;
 
-  if (options?.category && options.category !== 'All') {
+  if (options?.category) {
     filteredCuisines = filteredCuisines.filter((cuisine) => {
       return cuisine.category === options.category;
     });

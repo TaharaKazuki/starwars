@@ -4,23 +4,20 @@ import { useDebounce } from 'use-debounce';
 import { type CuisineFilters } from '@/app/api/cuisines';
 
 type CuisinesListFilterProps = {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   onChange: (filters: CuisineFilters) => void;
 };
 
 export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
   const [search, setSearch] = useState<CuisineFilters['search']>();
-  const [category, setCategory] = useState<CuisineFilters['category'] | 'All'>(
-    'All'
-  );
-  const [maxPrice, setMaxPrice] = useState<CuisineFilters['maxPrice'] | 'All'>(
-    'All'
-  );
+  const [category, setCategory] = useState<CuisineFilters['category']>();
+  const [maxPrice, setMaxPrice] = useState<CuisineFilters['maxPrice']>();
   const [debouncedSearch] = useDebounce(search, 500);
 
   useEffect(() => {
     onChange({
-      category: category === 'All' ? undefined : category,
-      maxPrice: maxPrice === 'All' ? undefined : maxPrice,
+      category,
+      maxPrice,
       search: debouncedSearch,
     });
   }, [category, debouncedSearch, maxPrice, onChange]);
@@ -36,10 +33,9 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
       <select
         value={category}
         onChange={(e) =>
-          setCategory(e.target.value as CuisineFilters['category'] | 'All')
+          setCategory(e.target.value as CuisineFilters['category'])
         }
       >
-        <option value="All">All</option>
         <option value="Japanese">Japanese</option>
         <option value="Italian">Italian</option>
         <option value="French">French</option>
@@ -47,9 +43,7 @@ export const CuisinesListFilter = ({ onChange }: CuisinesListFilterProps) => {
       <select
         value={maxPrice}
         onChange={(e) =>
-          setMaxPrice(
-            e.target.value === 'All' ? 'All' : parseInt(e.target.value)
-          )
+          setMaxPrice(e.target.value ? parseInt(e.target.value) : undefined)
         }
       >
         <option value="10">$10</option>
